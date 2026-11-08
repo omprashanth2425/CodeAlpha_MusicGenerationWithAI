@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Melodia · AI Music Generator</title>
+<meta name="description" content="Compose original music with a neural network. Pick a mood, key and instrument, then play or download your piece.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎵</text></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <span class="logo">♪</span>
+    <div>
+      <h1>Melodia</h1>
+      <p>AI music studio</p>
+    </div>
+  </div>
+  <span id="badge" class="badge">Connecting…</span>
+</header>
+
+<main class="layout">
+
+  <section class="panel controls">
+    <h2>Compose</h2>
+
+    <div class="field">
+      <span class="lbl">Mood</span>
+      <div class="moods" id="moods">
+        <button type="button" class="mood active" data-mood="happy"><span class="e">😊</span>Happy</button>
+        <button type="button" class="mood" data-mood="calm"><span class="e">🌿</span>Calm</button>
+        <button type="button" class="mood" data-mood="sad"><span class="e">🌧️</span>Sad</button>
+        <button type="button" class="mood" data-mood="dark"><span class="e">🌑</span>Dark</button>
+      </div>
+    </div>
+
+    <div class="grid3">
+      <div class="field">
+        <label class="lbl" for="key">Key</label>
+        <select id="key"></select>
+      </div>
+      <div class="field">
+        <label class="lbl" for="instrument">Instrument</label>
+        <select id="instrument"></select>
+      </div>
+      <div class="field">
+        <label class="lbl" for="bars">Length</label>
+        <select id="bars">
+          <option value="4">4 bars</option>
+          <option value="8" selected>8 bars</option>
+          <option value="16">16 bars</option>
+          <option value="32">32 bars</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="row">
+        <label class="lbl" for="tempo">Tempo</label>
+        <output id="tempoOut" class="val">Auto</output>
+      </div>
+      <input type="range" id="tempo" min="50" max="200" value="100" disabled>
+      <label class="check"><input type="checkbox" id="tempoAuto" checked> Match the mood</label>
+    </div>
+
+    <div class="field">
+      <div class="row">
+        <label class="lbl" for="creativity">Creativity</label>
+        <output id="creativityOut" class="val">Auto</output>
+      </div>
+      <input type="range" id="creativity" min="0.3" max="1.5" step="0.05" value="0.9">
+      <div class="scale"><span>Predictable</span><span>Adventurous</span></div>
+    </div>
+    
+     <div class="field">
+      <label class="check"><input type="checkbox" id="drums"> Add drums</label>
+    </div>
+
+    <div class="field">
+      <label class="lbl" for="seed">Seed (optional)</label>
+      <input type="number" id="seed" min="0" max="999999" placeholder="Random">
+    </div>
+
+    <button type="button" id="generate" class="cta"><span id="genLabel">Generate music</span></button>
+  </section>
+
+  <section class="panel stage">
+    <div class="stage-head">
+      <h2 id="title">Your composition</h2>
+      <div class="chips" id="chips"></div>
+    </div>
+
+    <div class="rollwrap"><canvas id="roll"></canvas></div>
+
+    <div class="transport">
+      <button type="button" id="playBtn" class="round" disabled aria-label="Play">▶</button>
+      <button type="button" id="stopBtn" class="round ghost" disabled aria-label="Stop">■</button>
+      <span id="time" class="time">0:00 / 0:00</span>
+      <div class="spacer"></div>
+      <button type="button" id="midiBtn" class="btn" disabled>⬇ MIDI</button>
+      <button type="button" id="wavBtn" class="btn" disabled>⬇ WAV</button>
+    </div>
+
+    <div class="history">
+      <div class="row">
+        <h3>Recent pieces</h3>
+        <button type="button" id="clearHist" class="link">Clear</button>
+      </div>
+      <div id="hist" class="hist-list"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>Melodia composes original melodies with an LSTM neural network trained on folk-tune MIDI files.</footer>
+
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="script.js"></script>
+</body>
+</html>
