@@ -4,9 +4,16 @@ Melodia composes original music with a neural network. Pick a mood, key and inst
 
 ![Melodia screenshot](docs/screenshot.png)
 
-**Live demo:** https://melodia-ai-s1ww.onrender.com/
 
 *Built for the CodeAlpha AI internship, Task 3: Music Generation with AI.*
+
+## Live demo: 
+ https://melodia-ai-s1ww.onrender.com
+ 
+*(The free server sleeps when idle, so the first load can take up to a minute.)*
+
+## Video demo: [Watch on Google Drive]
+(https://drive.google.com/file/d/191WxEKU3kowR53-4g2k0SJYeBObQPlBZ/view?usp=sharing)
 
 ## Features
 - **LSTM neural network** trained on about 1,000 folk-tune MIDI files, with a mood setting (major or minor)
