@@ -57,4 +57,4 @@ frontend/  index.html, style.css, script.js (UI and synthesizer)
 The training tunes come from the Nottingham Music Database. Check the dataset's license before using this project commercially.
 
 ## Author
-Omprashanth Reddy
+ kotla Omprashanth Reddy
